@@ -3,12 +3,36 @@
   "name": "backend",
   "main": "src/index.ts",
   "compatibility_date": "2025-10-24",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "db-local",
+      "database_id": "<UUID>",
+      "migrations_dir": "drizzle",
+    },
+  ],
   "env": {
     "preview":{
       "name":"backend-preview",
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "db-preview",
+          "database_id": "58a516a8-2815-4be8-b9e6-9fe363f475c6",
+          "migrations_dir": "drizzle",
+        }
+      ]
     },
     "production": {
       "name": "backend-production",
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "db-production",
+          "database_id": "d2c45921-7244-48ed-a2d4-0ca4d3a9be82",
+          "migrations_dir": "drizzle",
+        }
+      ]
     }
   }
 }
