@@ -20,7 +20,7 @@ runs:
       with:
         node-version: ${{ inputs.node-version }}
         check-latest: true
-        cache: npm
+        cache: pnpm
 
     - name: Enable Corepack and prepare pnpm (with fallback)
       shell: bash
