@@ -22,16 +22,22 @@ runs:
         check-latest: true
         cache: pnpm
 
-    - name: Enable Corepack and prepare pnpm
+    - name: Enable Corepack and prepare pnpm (with fallback)
       shell: bash
       run: |
-        corepack enable
-        corepack prepare pnpm@${{ inputs.pnpm-version }} --activate
+        set -euo pipefail
+        echo "Enabling corepack and preparing pnpm@${{ inputs.pnpm-version }} ..."
+        corepack enable || true
+        # corepack prepare が失敗する環境もあるため、続行してグローバルインストールを試す
+        corepack prepare pnpm@${{ inputs.pnpm-version }} --activate || true
+        echo "Installing pnpm globally as a fallback to ensure pnpm is on PATH ..."
+        npm install -g pnpm@${{ inputs.pnpm-version }}
 
     - name: Show versions
       shell: bash
       run: |
         node -v
+        npm -v
         pnpm -v
 
     - name: Install dependencies
