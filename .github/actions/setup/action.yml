@@ -27,7 +27,7 @@ runs:
       run: corepack enable
     - name: Prepare pnpm
       shell: bash
-      run: corepack use pnpm@10.19.0
+      run: corepack prepare ${{ inputs.pnpm-version }} --activate
 
     - name: Show versions
       shell: bash
