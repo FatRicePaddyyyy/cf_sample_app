@@ -15,23 +15,17 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Setup Node.js
+    - uses: actions/checkout@v4
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: ${{ inputs.pnpm-version }}
+        
+    - name: Use Node.js ${{ inputs.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node-version }}
-        check-latest: true
-        cache: pnpm
-
-    - name: Enable Corepack and prepare pnpm (with fallback)
-      shell: bash
-      run: |
-        set -euo pipefail
-        echo "Enabling corepack and preparing pnpm@${{ inputs.pnpm-version }} ..."
-        corepack enable || true
-        # corepack prepare が失敗する環境もあるため、続行してグローバルインストールを試す
-        corepack prepare pnpm@${{ inputs.pnpm-version }} --activate || true
-        echo "Installing pnpm globally as a fallback to ensure pnpm is on PATH ..."
-        npm install -g pnpm@${{ inputs.pnpm-version }}
+        cache: "pnpm"
 
     - name: Show versions
       shell: bash
