@@ -25,9 +25,9 @@ runs:
     - name: Enable Corepack
       shell: bash
       run: corepack enable
-    - name: Prepare Corepack
+    - name: Prepare Corepack (from packageManager)
       shell: bash
-      run: corepack prepare "pnpm@${{ inputs.pnpm-version }}" --activate
+      run: corepack install
 
     - name: Show versions
       shell: bash
