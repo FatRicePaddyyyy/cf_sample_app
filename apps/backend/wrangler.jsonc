@@ -24,6 +24,14 @@
         "FRONTEND_URL": "https://frontend-preview.fatricepaddy.workers.dev",
         "crossSubDomainCookies": ".fatricepaddy.workers.dev",
       },
+      "observability": {
+        "logs": {
+          "enabled": false,
+          "head_sampling_rate": 1,
+          "invocation_logs": true,
+          "persist": true
+        }
+      },
       "d1_databases": [
         {
           "binding": "DB",
@@ -39,7 +47,15 @@
         "BACKEND_URL": "https://backend-production.fatricepaddy.workers.dev",
         "FRONTEND_URL": "https://frontend-production.fatricepaddy.workers.dev",
         "crossSubDomainCookies": ".fatricepaddy.workers.dev",
-      },      
+      },
+      "observability": {
+        "logs": {
+          "enabled": false,
+          "head_sampling_rate": 1,
+          "invocation_logs": true,
+          "persist": true
+        }
+      },
       "d1_databases": [
         {
           "binding": "DB",
