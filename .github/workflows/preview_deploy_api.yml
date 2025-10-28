@@ -5,7 +5,6 @@ on:
 
 env:
   NODE_VERSION: '22.21.0'
-  PNPM_VERSION: '10.19.0'
   BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -17,11 +16,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Setup environment
         uses: ./.github/actions/setup
         with:
           node-version: ${{ env.NODE_VERSION }}
-          pnpm-version: ${{ env.PNPM_VERSION }}
+
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Build & Deploy Worker
         uses: cloudflare/wrangler-action@v3
         with:
