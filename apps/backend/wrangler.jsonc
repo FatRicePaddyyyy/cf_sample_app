@@ -11,9 +11,19 @@
       "migrations_dir": "drizzle",
     },
   ],
+  "vars": {
+    "BACKEND_URL": "http://localhost:8787",
+    "FRONTEND_URL": "http://localhost:3000",
+    "crossSubDomainCookies": "localhost",
+  },
   "env": {
     "preview":{
       "name":"backend-preview",
+      "vars": {
+        "BACKEND_URL": "https://backend-preview.fatricepaddy.workers.dev",
+        "FRONTEND_URL": "https://frontend-preview.fatricepaddy.workers.dev",
+        "crossSubDomainCookies": ".fatricepaddy.workers.dev",
+      },
       "d1_databases": [
         {
           "binding": "DB",
@@ -25,6 +35,11 @@
     },
     "production": {
       "name": "backend-production",
+      "vars": {
+        "BACKEND_URL": "https://backend-production.fatricepaddy.workers.dev",
+        "FRONTEND_URL": "https://frontend-production.fatricepaddy.workers.dev",
+        "crossSubDomainCookies": ".fatricepaddy.workers.dev",
+      },      
       "d1_databases": [
         {
           "binding": "DB",
