@@ -10,7 +10,7 @@ inputs:
   pnpm-version:
     description: 'pnpm version'
     required: false
-    default: 'pnpm@10.19.0'
+    default: '10.19.0'
 
 runs:
   using: composite
@@ -22,10 +22,11 @@ runs:
         check-latest: true
         cache: pnpm
 
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v2
-      with:
-        version: ${{ inputs.pnpm-version }}
+    - name: Enable Corepack and prepare pnpm
+      shell: bash
+      run: |
+        corepack enable
+        corepack prepare pnpm@${{ inputs.pnpm-version }} --activate
 
     - name: Show versions
       shell: bash
